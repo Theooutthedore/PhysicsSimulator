@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NEA project</title>
+    <link rel="stylesheet" href="style.css">
+    
+    
+</head>
+<body>
+
+    <div class="container">
+    
+        <div id="propperties">
+            <!-- <script src="modules/propertiesGUI.js"> </script> -->
+
+            <div class="expandable">
+                <button  class="unexpanded">Object 0</button>
+                <button class="expanded">Object 0</button>
+                <div class="dd">
+
+                    <div class="vcat">
+                        <div class="category">Shape</div>
+                        <div class="hthree">
+                            <div>size<input></div>
+                            <div>mass<input></div>
+                            <div>density<input></div>
+                        </div>
+                    </div>
+                    
+                    <div class="vcat">
+                        <div class="category">Position</div>
+                        <div class="hthree">
+                            <div>x<input></div>
+                            <div>y<input></div>
+                            <div>r<input></div>
+                        </div>
+                    </div>
+
+                    <div class="vcat">
+                        <div class="category">Velocity</div>
+                        <div class="hthree">
+                            <div>x<input> </div>
+                            <div>y<input></div>
+                            <div>r<input></div>
+                        </div>
+                        <!-- <div class="htwo">
+                            <div>Magitude<input></div>
+                            <div>Direction<input></div>
+                        </div> -->
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="expandable">
+                <button class="unexpanded">Object 1</button>
+                <button class="expanded">Object 1</button>
+                <div class="dd">
+            
+                    <div class="vcat">
+                        <div class="category">Shape</div>
+                        <div class="hthree">
+                            <div>size<input></div>
+                            <div>mass<input></div>
+                            <div>density<input></div>
+                        </div>
+                    </div>
+            
+                    <div class="vcat">
+                        <div class="category">Position</div>
+                        <div class="hthree">
+                            <div>x<input></div>
+                            <div>y<input></div>
+                            <div>r<input></div>
+                        </div>
+                    </div>
+            
+                    <div class="vcat">
+                        <div class="category">Velocity</div>
+                        <div class="hthree">
+                            <div>x<input> </div>
+                            <div>y<input></div>
+                            <div>r<input></div>
+                        </div>
+                        <!-- <div class="htwo">
+                                        <div>Magitude<input></div>
+                                        <div>Direction<input></div>
+                                    </div> -->
+                    </div>
+            
+                </div>
+            </div>
+            
+            <div class="expandable">
+                <button class="unexpanded">Object 2</button>
+                <button class="expanded">Object 2</button>
+                <div class="dd">
+            
+                    <div class="vcat">
+                        <div class="category">Shape</div>
+                        <div class="hthree">
+                            <div>size<input></div>
+                            <div>mass<input></div>
+                            <div>density<input></div>
+                        </div>
+                    </div>
+            
+                    <div class="vcat">
+                        <div class="category">Position</div>
+                        <div class="hthree">
+                            <div>x<input></div>
+                            <div>y<input></div>
+                            <div>r<input></div>
+                        </div>
+                    </div>
+            
+                    <div class="vcat">
+                        <div class="category">Velocity</div>
+                        <div class="hthree">
+                            <div>x<input> </div>
+                            <div>y<input></div>
+                            <div>r<input></div>
+                        </div>
+                        <!-- <div class="htwo">
+                                                    <div>Magitude<input></div>
+                                                    <div>Direction<input></div>
+                                                </div> -->
+                    </div>
+            
+                </div>
+            </div>
+
+        </div>
+
+        <div id="simulation">
+            <canvas id="canvas1"></canvas>
+        </div>
+
+        <div id="timeline">
+            <div id="timecontrol">
+                <button id="stepb" class="pb"><img src="/Assets/chevron_left_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="playb" class="pb"><img src="/Assets/history_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="pause" class="pb"><img src="/Assets/pause_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="playf" class="pb"><img src="/Assets/update_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="stepf" class="pb"><img src="/Assets/chevron_right_FILL0_wght400_GRAD0_opsz24.svg"></button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+    font-family: arial;
+}
+.container{
+    padding: 0px;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 16/9;
+    /* min-width: 1280px; */
+    /* fallback resolution */
+    min-width: 960px;
+    
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 8fr 1fr;
+}
+/*
+=======================================
+properties input
+=======================================
+*/
+div{
+    text-align: center;
+    color:#1b1b1b;
+}
+#propperties{
+    grid-column: 1;
+    grid-row: 1;
+    border-right:1px solid grey;
+    background-color: #1b1b1b;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.expandable{
+    padding: 10px;
+}
+.unexpanded{
+    border: none;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #42adff;
+
+}
+.unexpanded:active{
+    border: none;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #507fc5;
+
+}
+.expanded {
+    border: none;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px 10px 0 0;
+    background-color: #42adff;
+
+    display: none;
+}
+.expanded:active {
+    border: none;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px 10px 0 0;
+    background-color: #507fc5;
+}
+.dd {
+    background-color: #505050;
+    border-radius: 0 0 10px 10px;
+    padding-bottom: 10px;
+    /* display: grid;
+    grid-template-columns: 5fr;
+    grid-template-rows: 9fr; */
+    
+    display: none;
+}
+.category{
+    color: #42adff;
+}
+.vcat {
+    display: flex;
+    flex-direction: column;
+}
+.htwo{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.hthree{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.vthree{
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+}
+input{
+    width: 100%;
+    border: 1px solid #505050;
+    background-color: gray;
+}
+
+.controls {
+    background-color: #505050;
+    border-left: 10px solid #42adff;
+    border-radius: 10px;
+}
+
+/*
+=======================================
+simulation disp
+=======================================
+*/
+
+#simulation{
+    grid-column: 2;
+    grid-row: 1;
+    background-color: greenyellow;
+}
+#canvas1 {
+    background-color: #0f0f0f;
+    position: inherit;
+    height: 100%;
+    width: 100%;
+}
+
+/*
+=======================================
+time inputs
+=======================================
+*/
+
+#timeline{
+    grid-column: 1/3;
+    grid-row: 2;
+    border-top: 1px solid gray;
+    background-color: #1b1b1b;
+}
+#timecontrol{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(5,50px);
+    gap: 25px;
+    justify-content: center;
+}
+.pb{
+    background-color: #ff426e;
+    height: 50px;
+    width: 50px;
+    border: none;
+    /* padding: 10px; */
+    border-radius: 10px;
+}
+.pb:active{
+    background-color: #963149;
+    height: 50px;
+    width: 50px;
+    border: none;
+    /* padding: 10px; */
+    border-radius: 10px;
+}
