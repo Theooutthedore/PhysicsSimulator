@@ -1,29 +1,40 @@
 function timeGUI() {
     
 }
-function stepBackward(funcTickOnclick){
-    var stepb = document.getElementById("stepb");
-    stepb.addEventListener("click", function () { funcTickOnclick() });
-}
 
-function stepForward(funcTickOnclick){
+function stepForward(funcTickOnclick, funcRenderer, intTPS, intTickScale, RB) {
     var stepf = document.getElementById("stepf");
-    stepf.addEventListener("click", function () { funcTickOnclick() });
+    stepf.addEventListener("click", function () {
+        funcTickOnclick(funcRenderer, intTPS, intTickScale, RB)
+    });
 }
 
-function playForward(funcOnclick){
+function stepBackward(funcTickOnclick, funcRenderer, intTPS, intTickScale, RB) {
+    var stepb = document.getElementById("stepb");
+    stepb.addEventListener("click", function () {
+        funcTickOnclick(funcRenderer, intTPS, -intTickScale, RB)
+    });
+}
+
+function playForward(funcOnclick) {
     var playf = document.getElementById("playf");
-    playf.addEventListener("click", function () { funcOnclick() });
+    playf.addEventListener("click", function () {
+        funcOnclick()
+    });
 }
 
 function playBackward(funcOnclick) {
     var playb = document.getElementById("playb");
-    playb.addEventListener("click", function () { funcOnclick() });
+    playb.addEventListener("click", function () {
+        funcOnclick()
+    });
 }
 
 function pause(funcOnclick) {
     var pause = document.getElementById("pause");
-    pasue.addEventListener("click", function () { funcOnclick() });
+    pasue.addEventListener("click", function () {
+        funcOnclick()
+    });
 
 }
-export {timeGUI,stepBackward,stepForward,playBackward,playForward,pause};
+export { timeGUI, stepBackward, stepForward, playBackward, playForward, pause };

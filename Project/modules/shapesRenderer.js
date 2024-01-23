@@ -1,9 +1,26 @@
-function renderer(RB){
-    if(RB.shape === "circle"){
+function renderer(RB) {
+
+    //reset canvas
+    var canvas = document.getElementById("canvas1");
+    var ctx = canvas.getContext("2d");
+
+    //canvas w:h = 12:8
+    const base = 128;//base unit can be scaled if needed later
+    const cwidth = base * 12;
+    const cheight = base * 8;
+
+    canvas.width = cwidth;
+    canvas.height = cheight;
+
+    ctx.translate(cwidth / 2, cheight);
+
+    if (RB.shape === "circle") {
         circle(RB);
-    }else if(RB.shape === "square"){
+    } else if (RB.shape === "square") {
         //render square
     }
+
+
 }
 
 function circle(RB/*Rigidbody object*/) {
@@ -11,17 +28,21 @@ function circle(RB/*Rigidbody object*/) {
     var canvas = document.getElementById("canvas1");
     var ctx = canvas.getContext("2d");
 
-    RB.pos[1] *= -1;//flip y axis
+    //
+    var x = Math.round(RB.pos[0]),
+        y = -Math.round(RB.pos[1]),
+        r = Math.round(RB.pos[2]),
+        size = RB.size;
 
     ctx.fillStyle = "white";
-    ctx.arc(RB.pos[0], RB.pos[1], RB.size, 0, 2 * Math.PI);
+    ctx.arc(x, y, size, 0, 2 * Math.PI);
     ctx.fill();
 
     ctx.beginPath();
     ctx.strokeStyle = "red";
-    ctx.moveTo(RB.pos[0], RB.pos[1]);
+    ctx.moveTo(x, y);
     //trig to draw line at angle
-    ctx.lineTo(RB.pos[0] + RB.size * Math.cos(RB.pos[2] * Math.PI / 180), RB.pos[1] + RB.size * Math.sin(RB.pos[2] * Math.PI / 180));
+    ctx.lineTo(x + size * Math.cos(r * Math.PI / 180), y + size * Math.sin(r * Math.PI / 180));
     ctx.stroke();
 }
 
