@@ -13,15 +13,16 @@
     <div class="container">
     
         <div id="propperties">
-            <!-- <script src="modules/propertiesGUI.js"> </script> -->
 
             <div class="expandable">
                 <button  class="unexpanded">Object 0</button>
-                <button class="expanded">Object 0</button>
-                <div class="dd">
+                <button class="expanded">Object 0
 
+                </button>
+                <div class="dd">
+                    <button class="remove">remove this rigidbody</button>
                     <div class="vcat">
-                        <div class="category">Shape</div>
+                        <div class="category">Properties</div>
                         <div class="hthree">
                             <div>size<input></div>
                             <div>mass<input></div>
@@ -58,9 +59,10 @@
                 <button class="unexpanded">Object 1</button>
                 <button class="expanded">Object 1</button>
                 <div class="dd">
-            
+                    <button class="remove">remove this rigidbody</button>
+
                     <div class="vcat">
-                        <div class="category">Shape</div>
+                        <div class="category">Properties</div>
                         <div class="hthree">
                             <div>size<input></div>
                             <div>mass<input></div>
@@ -92,14 +94,15 @@
             
                 </div>
             </div>
-            
+
             <div class="expandable">
                 <button class="unexpanded">Object 2</button>
                 <button class="expanded">Object 2</button>
                 <div class="dd">
+                    <button class="remove">remove this rigidbody</button>
             
                     <div class="vcat">
-                        <div class="category">Shape</div>
+                        <div class="category">Properties</div>
                         <div class="hthree">
                             <div>size<input></div>
                             <div>mass<input></div>
@@ -132,19 +135,63 @@
                 </div>
             </div>
 
-        </div>
+            <div class="expandable">
+                <button class="unexpanded">Object 3</button>
+                <button class="expanded">Object 3</button>
+                <div class="dd">
+                    <button class="remove">remove this rigidbody</button>
+            
+                    <div class="vcat">
+                        <div class="category">Properties</div>
+                        <div class="hthree">
+                            <div>size<input></div>
+                            <div>mass<input></div>
+                            <div>density<input></div>
+                        </div>
+                    </div>
+            
+                    <div class="vcat">
+                        <div class="category">Position</div>
+                        <div class="hthree">
+                            <div>x<input></div>
+                            <div>y<input></div>
+                            <div>r<input></div>
+                        </div>
+                    </div>
+            
+                    <div class="vcat">
+                        <div class="category">Velocity</div>
+                        <div class="hthree">
+                            <div>x<input> </div>
+                            <div>y<input></div>
+                            <div>r<input></div>
+                        </div>
+                        <!-- <div class="htwo">
+                                                    <div>Magitude<input></div>
+                                                    <div>Direction<input></div>
+                                                </div> -->
+                    </div>
+            
+                </div>
+            </div>
+            
+            <div id="newRBc">
+                <button id="newrigidbody">new rigidbody</button>
+            </div>
 
+        </div>
+        
         <div id="simulation">
             <canvas id="canvas1"></canvas>
         </div>
 
         <div id="timeline">
             <div id="timecontrol">
-                <button id="stepb" class="pb"><img src="/Assets/chevron_left_FILL0_wght400_GRAD0_opsz24.svg"></button>
-                <button id="playb" class="pb"><img src="/Assets/history_FILL0_wght400_GRAD0_opsz24.svg"></button>
-                <button id="pause" class="pb"><img src="/Assets/pause_FILL0_wght400_GRAD0_opsz24.svg"></button>
-                <button id="playf" class="pb"><img src="/Assets/update_FILL0_wght400_GRAD0_opsz24.svg"></button>
-                <button id="stepf" class="pb"><img src="/Assets/chevron_right_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="stepb" class="pb"><img src="./Assets/chevron_left_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="playb" class="pb"><img src="./Assets/history_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="pause" class="pb"><img src="./Assets/pause_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="playf" class="pb"><img src="./Assets/update_FILL0_wght400_GRAD0_opsz24.svg"></button>
+                <button id="stepf" class="pb"><img src="./Assets/chevron_right_FILL0_wght400_GRAD0_opsz24.svg"></button>
             </div>
         </div>
     </div>
