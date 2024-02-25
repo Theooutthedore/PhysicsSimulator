@@ -62,12 +62,14 @@ class rigidBody {
     }
 
     groundCheck() {
-        if (this.#pos[1] - this.#size <= 0) {
-            //bounce and reverse y velo
-            this.#velo[1] *= -1;
-            this.#velo[1] -= 10;
+        //TODO: fix this rubbish
+        if (this.#pos[1] + this.#velo[1] - this.#size <= 0) {
+            console.log("ground contact")
             //add back overshoot into ground
             this.#pos[1] += this.#pos[1]-this.#size;
+            //bounce and reverse y velo
+            this.#velo[1] *= -1;
+            //this.#velo[1] -= 10;
         }        
     }
 
