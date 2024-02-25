@@ -18,8 +18,7 @@ function renderer(RB) {
         circle(RB);
     } else if (RB.shape === "square") {
         //render square
-    }
-
+    }//more shapes later
 
 }
 

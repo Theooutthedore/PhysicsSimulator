@@ -16,7 +16,7 @@ function tick(funcRenderer, intTPS, intTickScale, RB) {
         funcRenderer(RB);
     }
 
-    console.log("tick end");
+    console.log("tock");
 }
 function normal(intTPS, intTickScale, RB) {
     //normal forward
