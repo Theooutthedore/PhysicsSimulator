@@ -16,28 +16,36 @@ newRigidbodyGUI();
 removeRigidbodyGUI();
 canvas();
 
-const TPS = 10;
+const TPS = 1;
 var intTickScale = 1;
 
 //defs
 class rigidBody {
-    #pos = [0,500,0];
-    #velo = [0,0,0];
-    #size = 10;
-    #mass;//unused
-    #shape = "circle";
-    #hidden = true;
-    #id;//unused
-    constructor(intPos, intVelo, intSize, intMass, strShape, boolHidden, intId) {
+    #pos;   //position
+    #velo;  //velocity
+    #size;  //radius
+    #mass;  //mass      //unused
+    #shape; //shape
+    #hidden;//is it hidden
+    #id;    //id        //unused
+
+    constructor(/*intPos, intVelo, intSize, strShape, boolHidden*/) {
+        //defaults
+        this.#pos = [0, 500, 0];
+        this.#velo = [0, 0, 0];
+        this.#size = 50;
+        this.#shape = "circle";
+        this.#hidden = true;
+        /*
         this.#pos = intPos;
         this.#velo = intVelo;
         this.#size = intSize;
-        this.#mass = intMass;
+        //this.#mass = intMass;
         //this.density = mass/size;
         //force = velo*mass
         this.#shape = strShape;
         this.#hidden = boolHidden;
-        this.#id = intId;
+        */
     }
 
     // methods
@@ -50,15 +58,17 @@ class rigidBody {
         for (let i = 0; i < 3; i++) {
             this.#pos[i] += this.#velo[i] / intTPS * intTickScale;
         }
-        console.log(this.#pos);
+        //console.log(this.#pos);
     }
-    
-    groundCheck(){
-        console.log(this.#velo);
-        if(this.#pos[1] - this.#size <=0){
-            console.log("hit ground");
+
+    groundCheck() {
+        if (this.#pos[1] - this.#size <= 0) {
+            //bounce and reverse y velo
             this.#velo[1] *= -1;
-        }
+            this.#velo[1] -= 10;
+            //add back overshoot into ground
+            this.#pos[1] += this.#pos[1]-this.#size;
+        }        
     }
 
     //gets
@@ -86,7 +96,7 @@ class rigidBody {
     get getId() {
         return this.#id;
     }
-    
+
     //sets
     set setPos(intPos) {
         this.#pos = intPos;
@@ -97,23 +107,32 @@ class rigidBody {
     set setSize(intSize) {
         this.#size = intSize;
     }
-    set setHidden(boolHidden) {
-        this.#hidden = boolHidden;
-    }
     set setShape(strShape) {
         this.#shape = strShape;
+    }
+    set setHidden(boolHidden) {
+        this.#hidden = boolHidden;
     }
 
 }
 
-let RB = new rigidBody([-500, 100, 45], [100, 100, 20], 50, 0, "circle", false, 0);
+let RBs = [
+    new rigidBody([-500, 100, 45], [100, 100, 20], 50, "circle", false),
+    new rigidBody(),
+    new rigidBody(),
+    new rigidBody(),
+];
 
-console.log(RB);
 
-renderer(RB);
+RBs[0].setHidden = false;
+RBs[0].setPos = [-500,100,45];
 
-tGUI.stepForward(t.tick, renderer, TPS, intTickScale, RB);
-tGUI.stepBackward(t.tick, renderer, TPS, intTickScale, RB);
+renderer(RBs[0]);
+
+console.log(RBs);
+
+tGUI.stepForward(t.tick, renderer, TPS, intTickScale, RBs[0]);
+tGUI.stepBackward(t.tick, renderer, TPS, intTickScale, RBs[0]);
 
 
 

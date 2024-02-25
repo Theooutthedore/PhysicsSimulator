@@ -8,6 +8,9 @@ function tick(funcRenderer, intTPS, intTickScale, RB) {
         } else if (intTickScale < 0) {
             reverse(intTPS, intTickScale, RB);
         }
+
+        console.log(RB.getPos);
+        console.log(RB.getVelo);
         funcRenderer(RB);
     }
 
