@@ -2,35 +2,33 @@ function tick(funcRenderer, intTPS, intTickScale, RB) {
     //everything that needs to happen in 1 tick
     console.log("tick");
 
-    if (!RB.hidden) {
+    if (!RB.getHidden) {
         if (intTickScale > 0) {
             normal(intTPS, intTickScale, RB);
-
         } else if (intTickScale < 0) {
             reverse(intTPS, intTickScale, RB);
         }
-
-        console.log(RB.velo);
-        console.log(RB.pos);
-
         funcRenderer(RB);
     }
 
     console.log("tock");
 }
+
 function normal(intTPS, intTickScale, RB) {
     //normal forward
-    RB = gravity(RB, intTPS, intTickScale);
-    RB = move(RB, intTPS, intTickScale);
+    RB.gravity(intTPS, intTickScale);
+    RB.groundCheck();
+    RB.move(intTPS, intTickScale);
 }
 
 function reverse(intTPS, intTickScale, RB) {
     //reverse backward
     console.log("reverse tick");
-    RB = move(RB, intTPS, intTickScale);
-    RB = gravity(RB, intTPS, intTickScale);
+    RB.move(intTPS, intTickScale);
+    RB.groundCheck();
+    RB.gravity(intTPS, intTickScale);
 }
-
+/*
 function gravity(RB, intTPS, intTickScale) {
     RB.velo[1] -= 10 / intTPS * intTickScale;
     //9.8m/s = m/tick
@@ -43,5 +41,5 @@ function move(RB, intTPS, intTickScale) {
     }
     return RB;
 }
-
+*/
 export { tick };

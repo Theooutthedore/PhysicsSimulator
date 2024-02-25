@@ -14,9 +14,9 @@ function renderer(RB) {
 
     ctx.translate(cwidth / 2, cheight);
 
-    if (RB.shape === "circle") {
+    if (RB.getShape === "circle") {
         circle(RB);
-    } else if (RB.shape === "square") {
+    } else if (RB.getShape === "square") {
         //render square
     }//more shapes later
 
@@ -28,10 +28,10 @@ function circle(RB/*Rigidbody object*/) {
     var ctx = canvas.getContext("2d");
 
     //
-    var x = Math.round(RB.pos[0]),
-        y = -Math.round(RB.pos[1]),
-        r = Math.round(RB.pos[2]),
-        size = RB.size;
+    var x = Math.round(RB.getPos[0]),
+        y = -Math.round(RB.getPos[1]),
+        r = Math.round(RB.getPos[2]),
+        size = RB.getSize;
 
     ctx.fillStyle = "white";
     ctx.arc(x, y, size, 0, 2 * Math.PI);
@@ -45,6 +45,7 @@ function circle(RB/*Rigidbody object*/) {
     ctx.stroke();
 }
 
+//TODO finish square
 function square(intPos, intSize) {
     //square stuff, has identicle phases every 90deg
     var canvas = document.getElementById("canvas1");
