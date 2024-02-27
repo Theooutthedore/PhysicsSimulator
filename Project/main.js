@@ -19,7 +19,6 @@ canvas();
 const TPS = 1;
 var intTickScale = 1;
 
-//defs
 class rigidBody {
     #pos;   //position
     #velo;  //velocity
@@ -119,7 +118,7 @@ class rigidBody {
 }
 
 let RBs = [
-    new rigidBody([-500, 100, 45], [100, 100, 20], 50, "circle", false),
+    new rigidBody(),
     new rigidBody(),
     new rigidBody(),
     new rigidBody(),
