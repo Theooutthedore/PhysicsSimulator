@@ -2,7 +2,7 @@
 import propGUIinitiate from "./modules/propertiesGUI.js";
 import newRigidbodyGUI from "./modules/newrigidbodyGUI.js";
 import removeRigidbodyGUI from "./modules/removerigidbodyGUI.js";
-import * as tGUI from "./modules/timeGUI.js";
+import timeGUI from "./modules/timeGUI.js";
 console.log("GUI initiated");
 //Renderer
 import canvas from "./modules/canvas.js";
@@ -16,8 +16,8 @@ newRigidbodyGUI();
 removeRigidbodyGUI();
 canvas();
 
-const TPS = 1;
-var intTickScale = 1;
+const TPS = 100;        //ticks per second
+var intTickScale = 1;   //speed multiplier
 
 class rigidBody {
     #pos;   //position
@@ -27,6 +27,7 @@ class rigidBody {
     #shape; //shape
     #hidden;//is it hidden
     #id;    //id        //unused
+    #debug;
 
     constructor(/*intPos, intVelo, intSize, strShape, boolHidden*/) {
         //defaults
@@ -35,6 +36,7 @@ class rigidBody {
         this.#size = 50;
         this.#shape = "circle";
         this.#hidden = true;
+        this.#debug = false;
         /*
         this.#pos = intPos;
         this.#velo = intVelo;
@@ -48,28 +50,32 @@ class rigidBody {
     }
 
     // methods
-    gravity(intTPS, intTickScale) {
-        this.#velo[1] -= 10 / intTPS * intTickScale;
-        //9.8m/s = m/tick
+    gravity(intTPS, boolReverse) {
+        this.#velo[1] -= 10 / intTPS * (boolReverse ? -1 : 1);
+        //9.8m/s (10m/s)
+        //RTPS = ticks/second
+        //?m/tick
     }
 
-    move(intTPS, intTickScale) {
+    move(boolReverse) {
         for (let i = 0; i < 3; i++) {
-            this.#pos[i] += this.#velo[i] / intTPS * intTickScale;
+            this.#pos[i] += this.#velo[i] * (boolReverse ? -1 : 1);  //add velo to pos
         }
+        this.#pos[2] %= 360; //reset rotation over 360deg
         //console.log(this.#pos);
     }
 
     groundCheck() {
         //TODO: fix this rubbish
-        if (this.#pos[1] + this.#velo[1] - this.#size <= 0) {
-            console.log("ground contact")
+        //there is technically inaccuracies here, the higher TPS the lower the error
+        if (this.#pos[1] - this.#size <= 0) {
+            console.log("ground contact");
             //add back overshoot into ground
-            this.#pos[1] += this.#pos[1]-this.#size;
+            //this.#pos[1] += this.#pos[1] - this.#size;
             //bounce and reverse y velo
             this.#velo[1] *= -1;
             //this.#velo[1] -= 10;
-        }        
+        }
     }
 
     //gets
@@ -97,6 +103,9 @@ class rigidBody {
     get getId() {
         return this.#id;
     }
+    get getDebug(){
+        return this.#debug;
+    }
 
     //sets
     set setPos(intPos) {
@@ -114,6 +123,9 @@ class rigidBody {
     set setHidden(boolHidden) {
         this.#hidden = boolHidden;
     }
+    set setDebug(boolDebug) {
+        this.#debug = boolDebug;
+    }
 
 }
 
@@ -124,16 +136,17 @@ let RBs = [
     new rigidBody(),
 ];
 
-
 RBs[0].setHidden = false;
-RBs[0].setPos = [-500,100,45];
+RBs[0].setPos = [-500, 500, 45];
+RBs[0].setVelo = [1, 0, 25];
+RBs[0].setDebug = true;
 
 renderer(RBs[0]);
 
 console.log(RBs);
 
-tGUI.stepForward(t.tick, renderer, TPS, intTickScale, RBs[0]);
-tGUI.stepBackward(t.tick, renderer, TPS, intTickScale, RBs[0]);
+var interval = null;
+timeGUI(interval, t.clock, t.tick, renderer, TPS, intTickScale, RBs[0]);
 
 
 

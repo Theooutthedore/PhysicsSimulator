@@ -1,35 +1,49 @@
-function tick(funcRenderer, intTPS, intTickScale, RB) {
+function clock(interval ,funcRenderer, intTPS, intTickScale, RB) {
+    var intMSPT = 1000 / intTPS / intTickScale,     //milliseconds per tick
+        intRTPS = intTPS * intTickScale,            //real ticks per second
+        boolReverse = intTickScale < 0,
+        boolPause = (intTickScale == 0);
+
+    if (boolPause) {
+        console.log("pls pause");
+        clearInterval(interval);
+    } else if (!interval) {
+        interval = setInterval(tick, intMSPT, funcRenderer, intTPS, boolReverse, RB);
+    }
+}
+
+function tick(funcRenderer, intTPS, boolReverse, RB) {
     //everything that needs to happen in 1 tick
-    console.log("tick");
+    //console.log("tick");
 
     if (!RB.getHidden) {
-        if (intTickScale > 0) {
-            normal(intTPS, intTickScale, RB);
-        } else if (intTickScale < 0) {
-            reverse(intTPS, intTickScale, RB);
+        if (!boolReverse) {
+            normal(intTPS, RB);
+        } else {
+            reverse(intTPS, RB);
         }
 
-        console.log(RB.getPos);
-        console.log(RB.getVelo);
+        //console.log(RB.getPos);
+        //console.log(RB.getVelo);
+
         funcRenderer(RB);
     }
-
-    console.log("tock");
+    //console.log("tock");
 }
 
-function normal(intTPS, intTickScale, RB) {
+function normal(intTPS, RB) {
     //normal forward
-    RB.gravity(intTPS, intTickScale);
+    RB.gravity(intTPS);
     RB.groundCheck();
-    RB.move(intTPS, intTickScale);
+    RB.move();
 }
 
-function reverse(intTPS, intTickScale, RB) {
+function reverse(intTPS, RB) {
     //reverse backward
     console.log("reverse tick");
-    RB.move(intTPS, intTickScale);
+    RB.move(true);
     RB.groundCheck();
-    RB.gravity(intTPS, intTickScale);
+    RB.gravity(intTPS, true);
 }
 /*
 function gravity(RB, intTPS, intTickScale) {
@@ -45,4 +59,4 @@ function move(RB, intTPS, intTickScale) {
     return RB;
 }
 */
-export { tick };
+export { tick, clock };

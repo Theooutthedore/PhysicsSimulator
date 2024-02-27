@@ -5,7 +5,7 @@ function renderer(RB) {
     var ctx = canvas.getContext("2d");
 
     //canvas w:h = 12:8
-    const base = 128;//base unit can be scaled if needed later
+    const base = 128;           //base unit can be scaled if needed later
     const cwidth = base * 12;
     const cheight = base * 8;
 
@@ -13,21 +13,49 @@ function renderer(RB) {
     canvas.height = cheight;
 
     ctx.translate(cwidth / 2, cheight);
-
+    
     if (RB.getShape === "circle") {
         circle(RB);
     } else if (RB.getShape === "square") {
         //render square
     }//more shapes later
+    
+    if (RB.getDebug) {
+        renderDebug(RB);
+    }
+}
+function renderDebug(RB) {
+    //debug renderer
+    var canvas = document.getElementById("canvas1");
+    var ctx = canvas.getContext("2d");
 
+    var px = Math.round(RB.getPos[0]),
+        py = -Math.round(RB.getPos[1]),
+        vx = Math.round(RB.getVelo[0] * 10),
+        vy = -Math.round(RB.getVelo[1] * 10);
+
+    ctx.beginPath();
+    ctx.strokeStyle = "lime";
+    ctx.lineWidth = 2;
+    ctx.moveTo(px, py);
+    ctx.lineTo(px + vx, py);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.strokeStyle = "magenta";
+    ctx.lineWidth = 2;
+    ctx.moveTo(px, py);
+    ctx.lineTo(px, py + vy);
+    ctx.stroke();
+    
+    //console.log([vx, vy]);
 }
 
-function circle(RB/*Rigidbody object*/) {
+function circle(RB) {
     //circle and line to indicate rotation angle
     var canvas = document.getElementById("canvas1");
     var ctx = canvas.getContext("2d");
 
-    //
     var x = Math.round(RB.getPos[0]),
         y = -Math.round(RB.getPos[1]),
         r = Math.round(RB.getPos[2]),
