@@ -23,8 +23,8 @@ function tick(funcRenderer, intTPS, boolReverse, RB) {
             reverse(intTPS, RB);
         }
 
-        //console.log(RB.getPos);
-        //console.log(RB.getVelo);
+        console.log("POS"+RB.getPos);
+        console.log("VELO"+RB.getVelo);
 
         funcRenderer(RB);
     }
@@ -35,13 +35,13 @@ function normal(intTPS, RB) {
     //normal forward
     RB.gravity(intTPS);
     RB.groundCheck();
-    RB.move();
+    RB.move(intTPS);
 }
 
 function reverse(intTPS, RB) {
     //reverse backward
     console.log("reverse tick");
-    RB.move(true);
+    RB.move(intTPS,true);
     RB.groundCheck();
     RB.gravity(intTPS, true);
 }

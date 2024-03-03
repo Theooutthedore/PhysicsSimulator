@@ -52,14 +52,14 @@ class rigidBody {
     // methods
     gravity(intTPS, boolReverse) {
         this.#velo[1] -= 10 / intTPS * (boolReverse ? -1 : 1);
-        //9.8m/s (10m/s)
-        //RTPS = ticks/second
-        //?m/tick
+        //9.8m/s (10m/s^2)
+        //TPS = ticks/second
+        //(9.8/TPS)m/tick
     }
 
-    move(boolReverse) {
+    move(intTPS, boolReverse) {
         for (let i = 0; i < 3; i++) {
-            this.#pos[i] += this.#velo[i] * (boolReverse ? -1 : 1);  //add velo to pos
+            this.#pos[i] += this.#velo[i] / intTPS * (boolReverse ? -1 : 1);  //add velo to pos
         }
         this.#pos[2] %= 360; //reset rotation over 360deg
         //console.log(this.#pos);
@@ -103,7 +103,7 @@ class rigidBody {
     get getId() {
         return this.#id;
     }
-    get getDebug(){
+    get getDebug() {
         return this.#debug;
     }
 
@@ -137,21 +137,13 @@ let RBs = [
 ];
 
 RBs[0].setHidden = false;
-RBs[0].setPos = [-500, 500, 45];
-RBs[0].setVelo = [1, 0, 25];
+RBs[0].setPos = [0, 500, 0];
+RBs[0].setVelo = [10, 0, 10];
 RBs[0].setDebug = true;
 
 renderer(RBs[0]);
 
-console.log(RBs);
+console.log("RB pos [" + RBs[0].getPos + "]");
 
 var interval = null;
 timeGUI(interval, t.clock, t.tick, renderer, TPS, intTickScale, RBs[0]);
-
-
-
-
-
-
-
-

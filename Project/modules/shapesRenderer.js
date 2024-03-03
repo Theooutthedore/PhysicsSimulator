@@ -31,8 +31,8 @@ function renderDebug(RB) {
 
     var px = Math.round(RB.getPos[0]),
         py = -Math.round(RB.getPos[1]),
-        vx = Math.round(RB.getVelo[0] * 10),
-        vy = -Math.round(RB.getVelo[1] * 10);
+        vx = Math.round(RB.getVelo[0]),
+        vy = -Math.round(RB.getVelo[1]);
 
     ctx.beginPath();
     ctx.strokeStyle = "lime";
